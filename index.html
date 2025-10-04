@@ -7,15 +7,112 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: 'oklch(0.98 0.01 240)',
+                        foreground: 'oklch(0.25 0.04 240)',
+                        card: 'oklch(1 0 0)',
+                        'card-foreground': 'oklch(0.25 0.04 240)',
+                        primary: 'oklch(0.62 0.22 260)',
+                        'primary-foreground': 'oklch(0.99 0 0)',
+                        secondary: 'oklch(0.95 0.02 240)',
+                        'secondary-foreground': 'oklch(0.25 0.04 240)',
+                        muted: 'oklch(0.96 0.01 240)',
+                        'muted-foreground': 'oklch(0.5 0.03 240)',
+                        accent: 'oklch(0.68 0.2 180)',
+                        'accent-foreground': 'oklch(0.99 0 0)',
+                        border: 'oklch(0.92 0.01 240)',
+                        input: 'oklch(0.92 0.01 240)',
+                        ring: 'oklch(0.62 0.22 260)'
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'slide-in-left': 'slide-in-left 0.6s ease-out',
+                        'slide-in-right': 'slide-in-right 0.6s ease-out',
+                        'slide-in-bottom': 'slide-in-bottom 0.6s ease-out',
+                        'fade-in': 'fade-in 0.6s ease-out'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    
+    <!-- Supabase SDK for Advanced Moderation -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    
+    <!-- Supabase Configuration (Optional - for advanced moderation) -->
+    <script>
+        // Configure your Supabase project here for advanced moderation
+        // Replace with your actual Supabase project URL and anon key
+        window.SUPABASE_CONFIG = {
+            url: "https://YOUR_PROJECT.supabase.co", // Replace with your Supabase URL
+            anonKey: "YOUR_ANON_PUBLIC_KEY" // Replace with your Supabase anon key
+        };
+    </script>
 </head>
 <body>
     <!-- Landing Page with Animation -->
     <div id="landing-page" class="page active">
         <div class="landing-container">
-            <div class="logo-container">
-                <h1 class="app-name" id="app-name">NST Ask</h1>
-                <p class="tagline" id="tagline">Anonymous Doubt Solving Platform</p>
+            <!-- Animated Logo Sequence -->
+            <div class="logo-animation-container">
+                <!-- Newton School Logo (Top Left) -->
+                <div class="newton-logo" id="newton-logo">
+                    <div class="newton-logo-icon">
+                        <div class="newton-n">N</div>
+                    </div>
+                    <div class="newton-logo-text">Newton School</div>
+                </div>
+                
+                <!-- NST Ask Text -->
+                <div class="nst-ask-text" id="nst-ask-text">
+                    <span class="ask-n">N</span>
+                    <span class="ask-s">S</span>
+                    <span class="ask-t">T</span>
+                    <span class="ask-space"> </span>
+                    <span class="ask-a">A</span>
+                    <span class="ask-s2">s</span>
+                    <span class="ask-k">k</span>
+                </div>
+                
+                <!-- Subtitle -->
+                <div class="hero-subtitle" id="hero-subtitle">
+                    <p>Anonymous doubt solving platform for NST students</p>
+                </div>
+                
+                <!-- Features -->
+                <div class="hero-features" id="hero-features">
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>100% Anonymous</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <span>Expert Mentors</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Quick Solutions</span>
+                    </div>
+                </div>
+                
+                <!-- Get Started Button -->
+                <button class="get-started-btn" id="get-started-btn" onclick="startTransitionToSignup()">
+                    <i class="fas fa-arrow-right"></i>
+                    Get Started
+                </button>
             </div>
+            
+            <!-- Floating Elements -->
             <div class="floating-elements">
                 <div class="floating-circle circle-1"></div>
                 <div class="floating-circle circle-2"></div>
@@ -26,45 +123,112 @@
 
     <!-- Login Page -->
     <div id="login-page" class="page">
-        <div class="login-container">
-            <div class="login-header">
-                <h2>Welcome to NST Ask</h2>
-                <p>Join our anonymous doubt-solving community</p>
-            </div>
-            
-            <div class="login-options">
-                <button class="option-btn student-login" onclick="showStudentLogin()">
-                    <i class="fas fa-user-graduate"></i>
-                    <span>Student Login</span>
-                </button>
-                
-                <button class="option-btn mentor-btn" onclick="showMentorOption()">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <span>Become a Mentor</span>
-                </button>
+        <div class="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 text-foreground relative overflow-hidden">
+            <!-- Back to Landing Button -->
+            <button class="back-to-landing-btn" onclick="showLandingPage()" title="Back to Home">
+                <i class="fas fa-home"></i>
+            </button>
+            <!-- Background Effects -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+                <div class="absolute top-20 left-10 w-2 h-2 rounded-full bg-primary/30 animate-float" style="animation-delay: 0s;"></div>
+                <div class="absolute top-40 right-20 w-3 h-3 rounded-full bg-accent/40 animate-float" style="animation-delay: 1s;"></div>
+                <div class="absolute bottom-32 left-1/4 w-2 h-2 rounded-full bg-primary/20 animate-float" style="animation-delay: 2s;"></div>
+                <div class="absolute top-1/3 right-1/3 w-1.5 h-1.5 rounded-full bg-accent/30 animate-float" style="animation-delay: 1.5s;"></div>
             </div>
 
-            <div class="login-form" id="student-login-form">
-                <h3>Student Login</h3>
-                <form onsubmit="handleStudentLogin(event)">
-                    <div class="input-group">
-                        <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="NST Email" required>
-                    </div>
-                    <div class="input-group">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" required>
-                    </div>
-                    <button type="submit" class="login-btn">Login</button>
-                </form>
-                <p class="signup-link">Don't have an account? <a href="#" onclick="showSignup()">Sign Up</a></p>
-            </div>
+            <div class="mx-auto w-full max-w-7xl px-6 py-10 relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+                    <!-- Left Section - Branding -->
+                    <section class="flex flex-col justify-center animate-slide-in-left">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center">
+                                <i class="fas fa-question-circle text-white text-xl"></i>
+                            </div>
+                            <h1 class="text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                                NST-Ask
+                            </h1>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <p class="text-muted-foreground text-lg md:text-xl font-medium">Ask Freely. Learn Boldly.</p>
+                            <p class="text-muted-foreground text-base md:text-lg">Where Curiosity Finds Clarity.</p>
+                        </div>
+                        
+                        <!-- Available Mentors Section -->
+                        <div class="mt-8 p-6 bg-card/50 backdrop-blur-sm rounded-xl border border-primary/20">
+                            <h3 class="text-lg font-semibold text-foreground mb-2">Available Mentors</h3>
+                            <p class="text-muted-foreground text-sm mb-4">Connect with our experienced mentors</p>
+                            <div class="mentors-list" id="login-mentors-list">
+                                <!-- Mentors will be loaded here -->
+                            </div>
+                        </div>
+                    </section>
 
-            <div class="mentor-info" id="mentor-info">
-                <h3>Become a Mentor</h3>
-                <p>Help students by answering their doubts and guiding them through their academic journey.</p>
-                
-                <button class="mentor-apply-btn" onclick="showMentorApplication()">Apply as Mentor</button>
+                    <!-- Right Section - Login Form -->
+                    <section class="flex justify-center md:justify-end animate-slide-in-right">
+                        <div class="w-full max-w-md">
+                            <div class="bg-card text-card-foreground border-primary/20 shadow-lg shadow-primary/5 rounded-xl p-8 animate-slide-in-bottom">
+                                <div class="mb-6">
+                                    <h2 class="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
+                                        Sign in
+                                    </h2>
+                                    <p class="text-muted-foreground">
+                                        Continue to <span class="font-medium text-primary">NST-Ask</span>
+                                    </p>
+                                </div>
+                                
+                                <!-- Login Options -->
+                                <div class="flex space-x-2 mb-6">
+                                    <button class="flex-1 py-2 px-4 bg-primary text-primary-foreground rounded-lg text-sm font-medium transition-all duration-300" onclick="showStudentLogin()">
+                                        Student
+                                    </button>
+                                    <button class="flex-1 py-2 px-4 bg-secondary text-secondary-foreground rounded-lg text-sm font-medium transition-all duration-300 hover:bg-secondary/80" onclick="showMentorLogin()">
+                                        Mentor
+                                    </button>
+                                </div>
+                                
+                                <!-- Student Login Form -->
+                                <div id="student-login-form" class="space-y-4">
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium text-foreground">Email</label>
+                                        <input type="email" placeholder="you@adypu.edu.in" class="w-full px-4 py-3 border border-input rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300" required>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium text-foreground">Password</label>
+                                        <input type="password" placeholder="••••••••" class="w-full px-4 py-3 border border-input rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300" required>
+                                    </div>
+                                    <button type="submit" class="w-full py-3 px-4 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20">
+                                        Sign In
+                                    </button>
+                                    <button type="button" class="w-full py-3 px-4 bg-secondary text-secondary-foreground rounded-lg font-medium hover:bg-secondary/80 transition-all duration-300" onclick="showSignupPage()">
+                                        New here? Sign Up
+                                    </button>
+                                </div>
+                                
+                                <!-- Mentor Login Form -->
+                                <div id="mentor-login-form" class="space-y-4 hidden">
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium text-foreground">Email</label>
+                                        <input type="email" placeholder="mentor@adypu.edu.in" class="w-full px-4 py-3 border border-input rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300" required>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium text-foreground">Password</label>
+                                        <input type="password" placeholder="••••••••" class="w-full px-4 py-3 border border-input rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300" required>
+                                    </div>
+                                    <button type="submit" class="w-full py-3 px-4 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20">
+                                        Sign In
+                                    </button>
+                                    <button type="button" class="w-full py-3 px-4 bg-secondary text-secondary-foreground rounded-lg font-medium hover:bg-secondary/80 transition-all duration-300" onclick="showMentorSignup()">
+                                        Become a Mentor
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <p class="mt-6 text-center text-xs text-muted-foreground animate-fade-in">
+                                By continuing, you agree to our Terms of Service and Privacy Policy.
+                            </p>
+                        </div>
+                    </section>
+                </div>
             </div>
         </div>
     </div>
@@ -127,6 +291,64 @@
         </div>
     </div>
 
+    <!-- Mentor Signup Page -->
+    <div id="mentor-signup-page" class="page">
+        <div class="signup-container">
+            <div class="signup-header">
+                <button class="back-btn" onclick="goBackToMentorLogin()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Mentor Registration</h2>
+                <p>Join as a mentor to help students solve their doubts</p>
+            </div>
+
+            <form class="signup-form" onsubmit="handleMentorSignup(event)">
+                <div class="form-group">
+                    <label for="mentor-name">Full Name</label>
+                    <div class="input-group">
+                        <i class="fas fa-user-tie"></i>
+                        <input type="text" id="mentor-name" placeholder="Enter your full name" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mentor-email">NST Email</label>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="mentor-email" placeholder="your.name@adypu.edu.in" required>
+                    </div>
+                    <div class="error-message" id="mentor-email-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mentor-expertise">Expertise Areas</label>
+                    <div class="input-group">
+                        <i class="fas fa-graduation-cap"></i>
+                        <input type="text" id="mentor-expertise" placeholder="e.g., Programming, Mathematics, Science" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mentor-experience">Years of Experience</label>
+                    <div class="input-group">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="number" id="mentor-experience" placeholder="Enter years of experience" min="1" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mentor-password">Password</label>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="mentor-password" placeholder="Create a strong password" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="signup-btn">Register as Mentor</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Success Page -->
     <div id="success-page" class="page">
         <div class="success-container">
@@ -184,10 +406,6 @@
                         <a href="#" class="nav-item" onclick="showSection('my-answers')">
                             <i class="fas fa-comments"></i>
                             <span>My Answers</span>
-                        </a>
-                        <a href="#" class="nav-item" onclick="showSection('mentors')">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                            <span>Mentors</span>
                         </a>
                         <a href="#" class="nav-item" onclick="showSection('profile')">
                             <i class="fas fa-user-cog"></i>
@@ -258,6 +476,19 @@
                             </div>
                             
                             <div class="form-group">
+                                <label for="doubt-media">Add Media (Optional)</label>
+                                <div class="media-upload-container">
+                                    <input type="file" id="doubt-media" accept="image/*,video/*" multiple onchange="handleDoubtMediaUpload(event)">
+                                    <div class="media-upload-area" onclick="document.getElementById('doubt-media').click()">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Click to upload images or videos</p>
+                                        <small>Supports: JPG, PNG, GIF, MP4, MOV</small>
+                                    </div>
+                                    <div class="media-preview" id="doubt-media-preview"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
                                 <label class="checkbox-label">
                                     <input type="checkbox" id="anonymous-post">
                                     <span class="checkmark"></span>
@@ -296,17 +527,6 @@
                         </div>
                     </section>
 
-                    <!-- Mentors Section -->
-                    <section id="mentors-section" class="content-section">
-                        <div class="section-header">
-                            <h2>Available Mentors</h2>
-                            <p>Connect with experienced mentors</p>
-                        </div>
-                        
-                        <div class="mentors-grid" id="mentors-grid">
-                            <!-- Mentors will be loaded here -->
-                        </div>
-                    </section>
 
                     <!-- Profile Section -->
                     <section id="profile-section" class="content-section">
@@ -328,19 +548,23 @@
                             </div>
                             
                             <div class="profile-stats">
-                                <div class="stat-item">
+                                <div class="stat-item xp-highlight">
+                                    <div class="stat-icon">⭐</div>
                                     <span class="stat-number" id="total-xp">0</span>
                                     <span class="stat-label">Total XP</span>
                                 </div>
                                 <div class="stat-item">
+                                    <div class="stat-icon">❓</div>
                                     <span class="stat-number" id="doubts-asked">0</span>
                                     <span class="stat-label">Doubts Asked</span>
                                 </div>
                                 <div class="stat-item">
+                                    <div class="stat-icon">💬</div>
                                     <span class="stat-number" id="answers-given">0</span>
                                     <span class="stat-label">Answers Given</span>
                                 </div>
                                 <div class="stat-item">
+                                    <div class="stat-icon">👍</div>
                                     <span class="stat-number" id="helpful-answers">0</span>
                                     <span class="stat-label">Helpful Answers</span>
                                 </div>
@@ -483,19 +707,23 @@
                             </div>
                             
                             <div class="profile-stats">
-                                <div class="stat-item">
+                                <div class="stat-item xp-highlight">
+                                    <div class="stat-icon">⭐</div>
                                     <span class="stat-number" id="mentor-xp">0</span>
                                     <span class="stat-label">Total XP</span>
                                 </div>
                                 <div class="stat-item">
+                                    <div class="stat-icon">💡</div>
                                     <span class="stat-number" id="solutions-given">0</span>
                                     <span class="stat-label">Solutions Given</span>
                                 </div>
                                 <div class="stat-item">
+                                    <div class="stat-icon">👥</div>
                                     <span class="stat-number" id="students-helped">0</span>
                                     <span class="stat-label">Students Helped</span>
                                 </div>
                                 <div class="stat-item">
+                                    <div class="stat-icon">👍</div>
                                     <span class="stat-number" id="helpful-solutions">0</span>
                                     <span class="stat-label">Helpful Solutions</span>
                                 </div>
@@ -533,16 +761,256 @@
                     <p id="modal-doubt-description"></p>
                     <span class="doubt-category" id="modal-doubt-category"></span>
                 </div>
-                <form class="answer-form" onsubmit="submitAnswer(event)">
+                <form class="answer-form" onsubmit="submitAnswer(event)" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="answer-content">Your Solution</label>
-                        <textarea id="answer-content" rows="8" placeholder="Provide a detailed solution..." required></textarea>
+                        <textarea id="answer-content" rows="6" placeholder="Provide a detailed solution..." required></textarea>
                     </div>
+                    
+                    <div class="form-group">
+                        <label for="answer-media">Add Media (Optional)</label>
+                        <div class="media-upload-container">
+                            <input type="file" id="answer-media" accept="image/*,video/*" multiple onchange="handleMediaUpload(event)">
+                            <div class="media-upload-area" onclick="document.getElementById('answer-media').click()">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Click to upload images or videos</p>
+                                <small>Supports: JPG, PNG, GIF, MP4, MOV</small>
+                            </div>
+                            <div class="media-preview" id="media-preview"></div>
+                        </div>
+                    </div>
+                    
                     <div class="form-actions">
                         <button type="button" class="btn-secondary" onclick="closeAnswerModal()">Cancel</button>
-                        <button type="submit" class="btn-primary">Submit Solution</button>
+                        <button type="submit" class="btn-primary">Submit Answer</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Dashboard Section -->
+    <div id="dashboard-page" class="page">
+        <div class="dashboard-container">
+            <!-- Sidebar -->
+            <div class="dashboard-sidebar" id="dashboard-sidebar">
+                <div class="sidebar-header">
+                    <div class="logo-container">
+                        <div class="logo-icon">N</div>
+                        <span class="logo-text">NST-Ask</span>
+                    </div>
+                </div>
+                
+                <nav class="sidebar-nav">
+                    <a href="#" class="nav-item active" data-section="dashboard-home">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="#" class="nav-item" data-section="my-doubts">
+                        <i class="fas fa-question-circle"></i>
+                        <span>My Doubts</span>
+                    </a>
+                    <a href="#" class="nav-item" data-section="my-answers">
+                        <i class="fas fa-comments"></i>
+                        <span>My Answers</span>
+                    </a>
+                    <a href="#" class="nav-item" data-section="mentors">
+                        <i class="fas fa-users"></i>
+                        <span>Mentors</span>
+                    </a>
+                    <a href="#" class="nav-item" data-section="leaderboard">
+                        <i class="fas fa-trophy"></i>
+                        <span>Leaderboard</span>
+                    </a>
+                    <a href="#" class="nav-item" data-section="profile">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </nav>
+                
+                <div class="sidebar-footer">
+                    <button class="ask-doubt-btn" onclick="showSection('ask')">
+                        <i class="fas fa-plus"></i>
+                        Ask a Doubt
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="dashboard-main">
+                <!-- Header -->
+                <header class="dashboard-header">
+                    <div class="header-left">
+                        <button class="mobile-menu-btn" onclick="toggleSidebar()">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="search-container">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search questions, answers, or users..." class="search-input">
+                        </div>
+                    </div>
+                    
+                    <div class="header-right">
+                        <button class="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        <button class="theme-toggle-btn" onclick="toggleTheme()">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <div class="user-menu">
+                            <div class="user-avatar">
+                                <img src="placeholder-user.jpg" alt="User">
+                            </div>
+                            <div class="user-info">
+                                <span class="user-name">John Doe</span>
+                                <span class="user-email">john.doe@example.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Dashboard Content -->
+                <main class="dashboard-content">
+                    <!-- Question Feed Section -->
+                    <div id="dashboard-home" class="dashboard-section active">
+                        <div class="section-header">
+                            <h1>Question Feed</h1>
+                            <p>Discover and answer questions from the community</p>
+                        </div>
+                        
+                        <div class="filters">
+                            <button class="filter-btn active" data-filter="all">All Questions</button>
+                            <button class="filter-btn" data-filter="answered">Answered</button>
+                            <button class="filter-btn" data-filter="pending">Pending</button>
+                            <button class="filter-btn" data-filter="trending">Trending</button>
+                        </div>
+                        
+                        <div class="questions-grid" id="questions-grid">
+                            <!-- Questions will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- My Doubts Section -->
+                    <div id="my-doubts" class="dashboard-section">
+                        <div class="section-header">
+                            <h1>My Doubts</h1>
+                            <p>Track and manage your questions</p>
+                        </div>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-question-circle"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-number" id="total-doubts">0</span>
+                                    <span class="stat-label">Total Doubts</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-number" id="answered-doubts">0</span>
+                                    <span class="stat-label">Answered</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-number" id="pending-doubts">0</span>
+                                    <span class="stat-label">Pending</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="doubts-list" id="my-doubts-list">
+                            <!-- User's doubts will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- My Answers Section -->
+                    <div id="my-answers" class="dashboard-section">
+                        <div class="section-header">
+                            <h1>My Answers</h1>
+                            <p>Track your contributions to the community</p>
+                        </div>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-number" id="total-answers">0</span>
+                                    <span class="stat-label">Total Answers</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-number" id="accepted-answers">0</span>
+                                    <span class="stat-label">Accepted</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-number" id="total-likes">0</span>
+                                    <span class="stat-label">Total Likes</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="answers-list" id="my-answers-list">
+                            <!-- User's answers will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Mentors Section -->
+                    <div id="mentors" class="dashboard-section">
+                        <div class="section-header">
+                            <h1>Mentors</h1>
+                            <p>Connect with experienced mentors and get personalized help</p>
+                        </div>
+                        
+                        <div class="mentors-grid" id="mentors-grid">
+                            <!-- Mentors will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Leaderboard Section -->
+                    <div id="leaderboard" class="dashboard-section">
+                        <div class="section-header">
+                            <h1>Leaderboard</h1>
+                            <p>Top contributors and most helpful community members</p>
+                        </div>
+                        
+                        <div class="leaderboard-content" id="leaderboard-content">
+                            <!-- Leaderboard will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Profile Section -->
+                    <div id="profile" class="dashboard-section">
+                        <div class="section-header">
+                            <h1>Profile</h1>
+                            <p>Manage your profile and view your activity</p>
+                        </div>
+                        
+                        <div class="profile-content" id="profile-content">
+                            <!-- Profile will be loaded here -->
+                        </div>
+                    </div>
+                </main>
             </div>
         </div>
     </div>

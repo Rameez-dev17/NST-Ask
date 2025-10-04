@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NST Ask - Welcome</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'oklch(0.62 0.22 260)',
+                        accent: 'oklch(0.68 0.2 180)',
+                        background: 'oklch(0.98 0.01 240)',
+                        foreground: 'oklch(0.25 0.04 240)'
+                    },
+                    animation: {
+                        'logo-reveal': 'logo-reveal 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) both',
+                        'glow-pulse': 'glow-pulse 2.5s ease-in-out infinite',
+                        'text-shimmer': 'text-shimmer 4s linear infinite',
+                        'text-glow': 'text-glow 4s ease-in-out infinite',
+                        'water-flow': 'water-flow 12s ease infinite',
+                        'twinkle': 'twinkle 2s ease-in-out infinite',
+                        'float-particle': 'float-particle 15s ease-in-out infinite',
+                        'color-shift': 'color-shift 10s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes logo-reveal {
+            0% {
+                transform: scale(0.2) rotate(-360deg);
+                opacity: 0;
+                filter: blur(40px) brightness(0.2) saturate(0);
+            }
+            40% {
+                transform: scale(0.8) rotate(-90deg);
+                opacity: 0.5;
+                filter: blur(20px) brightness(0.8) saturate(0.5);
+            }
+            70% {
+                transform: scale(1.2) rotate(10deg);
+                opacity: 1;
+                filter: blur(0px) brightness(1.4) saturate(1.5);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+                filter: blur(0px) brightness(1) saturate(1);
+            }
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% {
+                box-shadow: 0 0 40px oklch(0.68 0.24 260 / 0.5), 0 0 80px oklch(0.72 0.22 180 / 0.4), 0 0 120px oklch(0.65 0.2 220 / 0.3);
+            }
+            50% {
+                box-shadow: 0 0 80px oklch(0.68 0.24 260 / 1), 0 0 140px oklch(0.72 0.22 180 / 0.8), 0 0 200px oklch(0.65 0.2 220 / 0.6);
+            }
+        }
+
+        @keyframes text-shimmer {
+            0% { background-position: -300% center; }
+            100% { background-position: 300% center; }
+        }
+
+        @keyframes text-glow {
+            0%, 100% {
+                text-shadow: 0 0 15px oklch(0.68 0.24 260 / 0.6), 0 0 30px oklch(0.72 0.22 180 / 0.4);
+            }
+            50% {
+                text-shadow: 0 0 30px oklch(0.68 0.24 260 / 1), 0 0 60px oklch(0.72 0.22 180 / 0.8), 0 0 90px oklch(0.65 0.2 220 / 0.6);
+            }
+        }
+
+        @keyframes water-flow {
+            0% {
+                background-position: 0% 50%;
+                filter: blur(100px) hue-rotate(0deg) saturate(1.5);
+            }
+            25% {
+                background-position: 100% 50%;
+                filter: blur(80px) hue-rotate(20deg) saturate(1.8);
+            }
+            50% {
+                background-position: 50% 100%;
+                filter: blur(100px) hue-rotate(-20deg) saturate(1.5);
+            }
+            75% {
+                background-position: 0% 50%;
+                filter: blur(80px) hue-rotate(10deg) saturate(1.8);
+            }
+            100% {
+                background-position: 0% 50%;
+                filter: blur(100px) hue-rotate(0deg) saturate(1.5);
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.4;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.3);
+            }
+        }
+
+        @keyframes float-particle {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(15px, -15px) rotate(90deg);
+            }
+            50% {
+                transform: translate(0, -30px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-15px, -15px) rotate(270deg);
+            }
+        }
+
+        @keyframes color-shift {
+            0%, 100% {
+                opacity: 0.6;
+                transform: scale(1) rotate(0deg);
+                filter: hue-rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.4) rotate(180deg);
+                filter: hue-rotate(60deg);
+            }
+        }
+
+        .water-flow {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                oklch(0.68 0.24 260 / 0.7),
+                oklch(0.72 0.22 180 / 0.8),
+                oklch(0.65 0.2 220 / 0.7),
+                oklch(0.75 0.22 90 / 0.8),
+                oklch(0.7 0.23 280 / 0.7),
+                oklch(0.68 0.24 260 / 0.7)
+            );
+            background-size: 400% 400%;
+            animation: water-flow 12s ease infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-hidden">
+    <main class="relative min-h-screen w-full overflow-hidden transition-colors duration-1000 bg-gradient-to-br from-oklch(0.2_0.05_240) via-oklch(0.15_0.04_220) to-oklch(0.18_0.05_200)" aria-label="Intro">
+        <!-- Background Effects -->
+        <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+            <!-- Colorful orbs -->
+            <div id="orbs-container"></div>
+            <!-- Floating colorful particles -->
+            <div id="particles-container"></div>
+            <!-- Large colorful glows -->
+            <div id="glows-container"></div>
+        </div>
+
+        <!-- Skip button -->
+        <button
+            onclick="skipIntro()"
+            class="absolute right-4 top-4 z-50 rounded-md bg-foreground/10 px-3 py-1.5 text-sm text-foreground/90 backdrop-blur transition hover:bg-foreground/20 focus:outline-none focus:ring-2 focus:ring-primary/40"
+        >
+            Skip
+        </button>
+
+        <!-- Center stage wrapper -->
+        <div class="relative mx-auto flex min-h-screen w-full max-w-6xl items-center justify-center px-6">
+            <!-- Water flow background -->
+            <div class="pointer-events-none absolute inset-0 -z-10 transition-opacity duration-1000 opacity-0" id="water-flow" aria-hidden="true">
+                <div class="water-flow"></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-accent/15" style="animation: water-flow 18s ease infinite reverse;"></div>
+            </div>
+
+            <!-- Logo and text container -->
+            <div class="transition-all duration-1000 will-change-transform relative z-40 scale-100" id="logo-container">
+                <div class="relative">
+                    <!-- Glow effects -->
+                    <div class="absolute inset-0 -z-30 animate-glow-pulse rounded-full blur-[100px] bg-oklch(0.65_0.2_220/0.6)"></div>
+                    <div class="absolute inset-0 -z-20 animate-glow-pulse rounded-full blur-[80px] bg-oklch(0.7_0.18_180/0.5)" style="animation-delay: 0.3s;"></div>
+                    <div class="absolute inset-0 -z-10 animate-glow-pulse rounded-full blur-[60px] bg-oklch(0.6_0.15_200/0.4)" style="animation-delay: 0.6s;"></div>
+                    
+                    <!-- Logo -->
+                    <img
+                        src="public/images/newton-logo.png"
+                        width="280"
+                        height="280"
+                        alt="Newton School of Technology logo"
+                        class="rounded-full transition-all duration-1000 relative z-10 animate-logo-reveal drop-shadow-2xl"
+                        id="logo"
+                    />
+                </div>
+                <p class="mt-8 text-center text-xl font-semibold transition-opacity duration-700 animate-fade-in opacity-100 bg-gradient-to-r from-oklch(0.75_0.2_220) via-oklch(0.8_0.18_180) to-oklch(0.75_0.2_220) bg-clip-text text-transparent" id="subtitle" style="text-shadow: 0 0 30px oklch(0.7 0.2 200 / 0.8); background-size: 200% auto; animation: text-shimmer 4s linear infinite;">
+                    A campus Q&A built for you
+                </p>
+            </div>
+
+            <!-- Main heading -->
+            <div class="flex flex-col items-center text-center transition-all duration-1000 opacity-0 translate-y-8" id="heading-container" role="group" aria-label="Heading">
+                <h1 class="text-balance text-6xl font-bold tracking-tight md:text-8xl" id="main-heading" style="animation: text-glow 4s ease-in-out infinite;">
+                    <span class="sr-only">Welcome to NST-Ask</span>
+                    <span aria-hidden class="relative inline-block bg-gradient-to-r from-oklch(0.6_0.22_220) via-oklch(0.7_0.2_180) to-oklch(0.6_0.22_220) bg-clip-text text-transparent" style="background-size: 200% auto; animation: text-shimmer 4s linear infinite;">
+                        Welcome to NST-Ask
+                        <span class="absolute inset-x-0 -bottom-4 mx-auto h-1.5 w-full max-w-[18ch] rounded-full bg-gradient-to-r from-transparent via-oklch(0.65_0.2_220) to-transparent opacity-90" style="animation: text-shimmer 3s linear infinite; background-size: 200% auto;"></span>
+                    </span>
+                </h1>
+                <p class="mt-10 text-2xl text-foreground/80 md:text-3xl font-light">
+                    Find answers faster with a focused academic Q&A space
+                </p>
+            </div>
+        </div>
+
+        <!-- Collapse overlay -->
+        <div class="pointer-events-none absolute inset-0 -z-10 bg-background/0 transition-all duration-700" id="collapse-overlay" aria-hidden="true"></div>
+    </main>
+
+    <script>
+        let currentPhase = 'logo-reveal';
+        const timing = {
+            logoReveal: 3500,
+            headingStay: 4000,
+            collapseDuration: 1500,
+            exitDelay: 200
+        };
+
+        // Create background effects
+        function createBackgroundEffects() {
+            const orbsContainer = document.getElementById('orbs-container');
+            const particlesContainer = document.getElementById('particles-container');
+            const glowsContainer = document.getElementById('glows-container');
+
+            // Create orbs
+            for (let i = 0; i < 20; i++) {
+                const orb = document.createElement('div');
+                orb.className = 'absolute rounded-full';
+                orb.style.cssText = `
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    width: ${Math.random() * 8 + 4}px;
+                    height: ${Math.random() * 8 + 4}px;
+                    background: radial-gradient(circle, oklch(${0.65 + Math.random() * 0.15} ${0.2 + Math.random() * 0.1} ${180 + Math.random() * 80}) 0%, transparent 70%);
+                    opacity: 0.6;
+                    animation: twinkle ${Math.random() * 3 + 2}s ease-in-out infinite;
+                    animation-delay: ${Math.random() * 2}s;
+                `;
+                orbsContainer.appendChild(orb);
+            }
+
+            // Create particles
+            for (let i = 0; i < 25; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'absolute rounded-full';
+                particle.style.cssText = `
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    width: ${Math.random() * 6 + 3}px;
+                    height: ${Math.random() * 6 + 3}px;
+                    background: linear-gradient(135deg, oklch(${0.6 + Math.random() * 0.2} ${0.18 + Math.random() * 0.1} ${200 + Math.random() * 40}), oklch(${0.65 + Math.random() * 0.15} ${0.15 + Math.random() * 0.1} ${180 + Math.random() * 60}));
+                    opacity: 0.5;
+                    animation: float-particle ${Math.random() * 12 + 18}s ease-in-out infinite;
+                    animation-delay: ${Math.random() * 5}s;
+                `;
+                particlesContainer.appendChild(particle);
+            }
+
+            // Create glows
+            for (let i = 0; i < 5; i++) {
+                const glow = document.createElement('div');
+                glow.className = 'absolute rounded-full';
+                glow.style.cssText = `
+                    left: ${Math.random() * 80 + 10}%;
+                    top: ${Math.random() * 80 + 10}%;
+                    width: ${Math.random() * 400 + 300}px;
+                    height: ${Math.random() * 400 + 300}px;
+                    background: radial-gradient(circle, oklch(${0.6 + Math.random() * 0.15} ${0.2 + Math.random() * 0.08} ${190 + Math.random() * 50} / 0.4) 0%, transparent 70%);
+                    filter: blur(80px);
+                    animation: color-shift ${Math.random() * 10 + 12}s ease-in-out infinite;
+                    animation-delay: ${Math.random() * 4}s;
+                `;
+                glowsContainer.appendChild(glow);
+            }
+        }
+
+        // Animation sequence
+        function startAnimation() {
+            setTimeout(() => {
+                currentPhase = 'heading';
+                showHeading();
+            }, timing.logoReveal);
+
+            setTimeout(() => {
+                currentPhase = 'collapse';
+                collapseToLogin();
+            }, timing.logoReveal + timing.headingStay);
+
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, timing.logoReveal + timing.headingStay + timing.collapseDuration + timing.exitDelay);
+        }
+
+        function showHeading() {
+            const logoContainer = document.getElementById('logo-container');
+            const headingContainer = document.getElementById('heading-container');
+            const waterFlow = document.getElementById('water-flow');
+
+            logoContainer.className = 'fixed left-12 top-12 z-40 scale-[0.6] transition-all duration-1000 will-change-transform';
+            headingContainer.className = 'flex flex-col items-center text-center transition-all duration-1000 opacity-100 translate-y-0';
+            waterFlow.className = 'pointer-events-none absolute inset-0 -z-10 transition-opacity duration-1000 opacity-100';
+        }
+
+        function collapseToLogin() {
+            const logoContainer = document.getElementById('logo-container');
+            const headingContainer = document.getElementById('heading-container');
+            const collapseOverlay = document.getElementById('collapse-overlay');
+
+            logoContainer.className = 'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 scale-50 transition-all duration-1000 will-change-transform';
+            headingContainer.className = 'flex flex-col items-center text-center transition-all duration-1000 opacity-0 translate-y-8 animate-collapse-to-center';
+            collapseOverlay.className = 'pointer-events-none absolute inset-0 -z-10 bg-background/90 backdrop-blur-md transition-all duration-700';
+        }
+
+        function skipIntro() {
+            window.location.href = 'index.html';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createBackgroundEffects();
+            startAnimation();
+        });
+    </script>
+</body>
+</html>

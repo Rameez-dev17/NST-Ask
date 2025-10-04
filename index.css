@@ -1,0 +1,279 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Custom styles for NST Ask Platform */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Custom button styles */
+  .btn-primary {
+    @apply bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg font-medium hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-all duration-300;
+  }
+  
+  /* Custom card styles */
+  .card {
+    @apply bg-white rounded-xl shadow-sm border p-6;
+  }
+  
+  .card-hover {
+    @apply hover:shadow-md transition-all duration-300 hover:-translate-y-1;
+  }
+  
+  /* Custom input styles */
+  .input-field {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300;
+  }
+  
+  /* Custom gradient backgrounds */
+  .gradient-bg {
+    @apply bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-800;
+  }
+  
+  .gradient-card {
+    @apply bg-gradient-to-r from-purple-500 to-pink-500;
+  }
+  
+  /* Custom animations */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s infinite;
+  }
+  
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded-full;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-purple-400 rounded-full;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-purple-500;
+  }
+}
+
+@layer utilities {
+  /* Custom utilities */
+  .text-gradient {
+    @apply bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent;
+  }
+  
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+  }
+  
+  .backdrop-blur-glass {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Custom component styles */
+.mentor-tag {
+  @apply bg-gradient-to-r from-blue-500 to-purple-500 text-white px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.xp-highlight {
+  @apply bg-gradient-to-r from-pink-500 to-rose-500 shadow-lg;
+  animation: pulse 2s infinite;
+}
+
+.stat-card {
+  @apply bg-gradient-to-br from-purple-500 to-indigo-500 text-white rounded-xl p-6 relative overflow-hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(30px, -30px);
+}
+
+.stat-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  transform: translate(-20px, 20px);
+}
+
+/* Media upload styles */
+.media-upload-area {
+  @apply border-2 border-dashed border-purple-300 rounded-lg p-8 text-center hover:border-purple-400 transition-colors cursor-pointer;
+}
+
+.media-upload-area:hover {
+  @apply bg-purple-50;
+}
+
+.media-preview {
+  @apply flex flex-wrap gap-4 mt-4;
+}
+
+.media-item {
+  @apply relative w-24 h-24 bg-gray-100 rounded-lg overflow-hidden;
+}
+
+.media-item img,
+.media-item video {
+  @apply w-full h-full object-cover;
+}
+
+.media-remove {
+  @apply absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs hover:bg-red-600 cursor-pointer;
+}
+
+/* Doubt card styles */
+.doubt-card {
+  @apply bg-white rounded-lg shadow-sm border p-6 hover:shadow-md transition-all duration-300;
+}
+
+.doubt-header {
+  @apply flex items-start justify-between mb-4;
+}
+
+.doubt-title {
+  @apply text-lg font-semibold text-gray-800 mb-2;
+}
+
+.doubt-meta {
+  @apply flex items-center space-x-4 text-sm text-gray-500;
+}
+
+.doubt-actions {
+  @apply flex items-center justify-between mt-4;
+}
+
+.action-btn {
+  @apply flex items-center space-x-1 px-3 py-1 text-gray-600 hover:text-purple-600 transition-colors;
+}
+
+.action-btn-primary {
+  @apply flex items-center space-x-1 px-3 py-1 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors;
+}
+
+/* Profile styles */
+.profile-header {
+  @apply bg-white rounded-xl shadow-sm border p-8 mb-6;
+}
+
+.profile-avatar {
+  @apply w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-2xl font-bold;
+}
+
+.profile-stats {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6;
+}
+
+.stat-item {
+  @apply bg-gradient-to-br from-purple-500 to-indigo-500 text-white rounded-xl p-6 text-center relative overflow-hidden;
+}
+
+.stat-item:hover {
+  @apply transform -translate-y-1 shadow-lg;
+}
+
+.stat-icon {
+  @apply text-2xl mb-2;
+}
+
+.stat-number {
+  @apply text-3xl font-bold mb-1;
+}
+
+.stat-label {
+  @apply text-sm opacity-90;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .profile-stats {
+    @apply grid-cols-2;
+  }
+  
+  .doubt-actions {
+    @apply flex-col space-y-2;
+  }
+  
+  .action-btn {
+    @apply w-full justify-center;
+  }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+  .doubt-card {
+    @apply bg-gray-800 border-gray-700 text-white;
+  }
+  
+  .profile-header {
+    @apply bg-gray-800 border-gray-700 text-white;
+  }
+}

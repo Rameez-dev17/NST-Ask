@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NST Ask Platform - V0 Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B5CF6',
+                        secondary: '#EC4899',
+                        accent: '#3B82F6'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- NST Ask Platform - V0 Compatible Demo -->
+    <div id="app">
+        <!-- Login Page -->
+        <div class="min-h-screen bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-800 flex items-center justify-center p-4">
+            <!-- Background Elements -->
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="absolute -top-40 -right-40 w-80 h-80 bg-white opacity-10 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-white opacity-10 rounded-full blur-3xl"></div>
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl"></div>
+            </div>
+
+            <div class="relative z-10 w-full max-w-md">
+                <!-- Login Container -->
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white/20">
+                    <!-- Header -->
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold text-white mb-2">Welcome to NST Ask</h2>
+                        <p class="text-white/80">Join our anonymous doubt-solving community</p>
+                    </div>
+
+                    <!-- Login Options -->
+                    <div class="flex space-x-4 mb-8">
+                        <button class="flex-1 flex items-center justify-center space-x-2 py-3 px-4 bg-white text-purple-600 rounded-lg shadow-lg">
+                            <i class="fas fa-user-graduate text-lg"></i>
+                            <span class="font-medium">Student Login</span>
+                        </button>
+                        
+                        <button class="flex-1 flex items-center justify-center space-x-2 py-3 px-4 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-all duration-300">
+                            <i class="fas fa-chalkboard-teacher text-lg"></i>
+                            <span class="font-medium">Mentor Login</span>
+                        </button>
+                    </div>
+
+                    <!-- Available Mentors Section -->
+                    <div class="mb-8 p-6 bg-white/10 rounded-xl border border-white/20">
+                        <h3 class="text-white text-lg font-semibold mb-2">Available Mentors</h3>
+                        <p class="text-white/70 text-sm mb-4">Connect with our experienced mentors</p>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3 p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                                <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user-tie text-white text-sm"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-white font-medium">Dr. Sarah Johnson</span>
+                                        <span class="bg-purple-500 text-white text-xs px-2 py-1 rounded-full">Mentor</span>
+                                    </div>
+                                    <p class="text-white/70 text-sm">Programming & Algorithms</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-3 p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                                <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user-tie text-white text-sm"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-white font-medium">Prof. Michael Chen</span>
+                                        <span class="bg-purple-500 text-white text-xs px-2 py-1 rounded-full">Mentor</span>
+                                    </div>
+                                    <p class="text-white/70 text-sm">Mathematics & Statistics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Student Login Form -->
+                    <form class="space-y-6">
+                        <h3 class="text-xl font-semibold text-white mb-4">Student Login</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="relative">
+                                <input type="email" placeholder="NST Email" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" required>
+                            </div>
+                            
+                            <div class="relative">
+                                <input type="password" placeholder="Password" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" required>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                            <button type="button" class="flex-1 py-3 px-4 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-colors">
+                                Create Account
+                            </button>
+                            <button type="submit" class="flex-1 py-3 px-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // V0 Integration Demo
+        console.log('NST Ask Platform - V0 Compatible Demo');
+        console.log('Ready for V0 integration!');
+        
+        // Add some interactivity for demo
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Button clicked:', this.textContent.trim());
+                });
+            });
+        });
+    </script>
+</body>
+</html>
